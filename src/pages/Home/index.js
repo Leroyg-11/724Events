@@ -19,6 +19,7 @@ const Page = () => {
     data && data.events && data.events.length > 0
       ? data.events[data.events.length - 1]
       : null;
+
   return (
     <>
       <header>
@@ -117,7 +118,12 @@ const Page = () => {
             }
           >
             {({ setIsOpened }) => (
-              <Form onSuccess={() => setIsOpened(true)} onError={() => null} />
+              <Form
+                onSuccess={() => {
+                  setIsOpened(true);
+                }}
+                onError={() => null}
+              />
             )}
           </Modal>
         </div>

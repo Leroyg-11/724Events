@@ -49,6 +49,7 @@ const Slider = () => {
                 <input
                   key={radioIdx}
                   type="radio"
+                  readOnly
                   name="radio-button"
                   checked={index === radioIdx} // MODIF :  checked={idx === radioIdx} => checked={index === radioIdx}
                 />

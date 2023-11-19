@@ -11,6 +11,7 @@ const mockContactApi = () =>
 
 const Form = ({ onSuccess, onError }) => {
   const [sending, setSending] = useState(false);
+
   const sendContact = useCallback(
     async (evt) => {
       evt.preventDefault();
@@ -20,7 +21,6 @@ const Form = ({ onSuccess, onError }) => {
       try {
         await mockContactApi();
         setSending(false);
-        // modif ici // onSuccess();
         onSuccess();
       } catch (err) {
         setSending(false);
@@ -37,7 +37,6 @@ const Form = ({ onSuccess, onError }) => {
           <Field placeholder="" label="Prénom" />
           <Select
             selection={["Personel", "Entreprise"]}
-            onChange={() => null}
             label="Personel / Entreprise"
             type="large"
             titleEmpty

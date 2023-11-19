@@ -11,19 +11,32 @@ const Slider = () => {
   const byDateDesc = data?.focus
     .sort((evtA, evtB) => (new Date(evtA.date) < new Date(evtB.date) ? -1 : 1))
     .reverse();
+  // Trie le tableau focus contenu dans l'objet data par date dans l'ordre décroissant.
+  // Méthode sort avec une fonction de comparaison basée sur les dates
+  // Méthode reverse pour inverser l'ordre du tableau
 
   const nextCard = () => {
     setIndex((prevIndex) =>
       prevIndex < byDateDesc.length - 1 ? prevIndex + 1 : 0
     );
+
+    // NextCard : utilise la fonction setIndex pour mettre à jour l'index.
+    // L'index est incrémenté de 1 s'il est inférieur à la longueur du tableau trié,
+    // sinon il est réinitialisé à 0.
   };
 
-  useEffect(() => {
-    const intervalId = setInterval(nextCard, 5000);
+  useEffect(
+    () => {
+      const intervalId = setInterval(nextCard, 5000);
 
-    return () => clearInterval(intervalId);
+      return () => clearInterval(intervalId);
+    },
     // eslint-disable-next-line
-  }, [index, byDateDesc]);
+    [index, byDateDesc]
+    // useEffect : exécute la fonction nextCard toutes les 5 secondes
+    // clearInterval : arrête l'exécution de la fonction nextCard
+    // La dépendance [index, byDateDesc] indique que l'effet doit être réexécuté lorsque l'une de ces valeurs change.
+  );
 
   return (
     <div className="SlideCardList">
@@ -51,7 +64,7 @@ const Slider = () => {
                   type="radio"
                   readOnly
                   name="radio-button"
-                  checked={index === radioIdx} // MODIF :  checked={idx === radioIdx} => checked={index === radioIdx}
+                  checked={index === radioIdx}
                 />
               ))}
             </div>

@@ -17,18 +17,22 @@ const EventList = () => {
   const filteredEvents = (
     (!type
       ? data?.events
-      : // Ajout filter en fonction du type
+      : // Ajout filter en fonction du type ( code avant modif -:data?.events) || []-)
         data?.events.filter((event) => event.type === type)) || []
-  ).filter((event, index) => {
-    if (
-      (currentPage - 1) * PER_PAGE <= index &&
-      PER_PAGE * currentPage > index
-    ) {
-      return true;
-    }
+  )
+    // vérifier si la variable type est définie. Si type n'est pas défini (!type est vrai),
+    // Tous les événements (data?.events) sont renvoyés.
+    // Sinon, les événements sont filtrés pour inclure uniquement ceux dont le type correspond à la valeur de type.
+    .filter((event, index) => {
+      if (
+        (currentPage - 1) * PER_PAGE <= index &&
+        PER_PAGE * currentPage > index
+      ) {
+        return true;
+      }
 
-    return false;
-  });
+      return false;
+    });
   const changeType = (evtType) => {
     setCurrentPage(1);
     setType(evtType);

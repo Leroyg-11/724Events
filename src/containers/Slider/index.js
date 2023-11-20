@@ -8,12 +8,12 @@ import "./style.scss";
 const Slider = () => {
   const { data } = useData();
   const [index, setIndex] = useState(0);
-  const byDateDesc = data?.focus
-    .sort((evtA, evtB) => (new Date(evtA.date) < new Date(evtB.date) ? -1 : 1))
-    .reverse();
-  // Trie le tableau focus contenu dans l'objet data par date dans l'ordre décroissant.
+  const byDateDesc = data?.focus.sort((evtA, evtB) =>
+    new Date(evtA.date) < new Date(evtB.date) ? -1 : 0
+  );
+
+  // Trie le tableau focus contenu dans l'objet data par date dans l'ordre décroissant. Du plus ancien au plus récent.
   // Méthode sort avec une fonction de comparaison basée sur les dates
-  // Méthode reverse pour inverser l'ordre du tableau
 
   const nextCard = () => {
     setIndex((prevIndex) =>

@@ -14,6 +14,7 @@ const Slider = () => {
 
   // Trie le tableau focus contenu dans l'objet data par date dans l'ordre décroissant. Du plus ancien au plus récent.
   // Méthode sort avec une fonction de comparaison basée sur les dates
+  // -1 indique que si l'evenetment A est plus ancien que B, il doit etre placé avant le B (evenement le plus récent)
 
   const nextCard = () => {
     setIndex((prevIndex) =>
